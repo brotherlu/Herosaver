@@ -22,7 +22,7 @@ function save_stl() {
 };
 
 function save_obj() {
-    var smooth = jQuery('#subdivideSLT').val();
+    var smooth = jQuery('#subdivideSLT').val() > 0 ? jQuery('#subdivideSLT').val() : undefined;
 
     var group = process(CK.character, smooth);
 
@@ -94,23 +94,28 @@ function process(object3d, smooth) {
 document.body.arrive(".footer", { onceOnly: true, existing: true }, function () {
     jQuery('.headerMenu:last').remove();
     jQuery('a:contains(Log In)').remove();
-    jQuery(".headerMenu-nav-item:contains(Save)").remove();
+    jQuery(".headerMenu-nav-item:contains(Save)").hide();
     jQuery(".headerMenu-nav-item:contains(Share)").remove();
     jQuery(".headerMenu-nav-item:contains(Heroes)").remove();
     jQuery(".editorFooter").empty();
     jQuery("li.tab-Material").remove();
     jQuery(".footer").empty();
 
-    var style = { "margin-left": "20px", "font-size": "1.4em", "color": "rgba(255, 255, 255, 0.8)", "cursor": "pointer" };
-      jQuery("<div/>", { class: "content-side", css: { "align-items": "center" } }).append([
-      jQuery("<a />", { css: style, text: "STL" }).on("click", save_stl),
-      jQuery("<a />", { css: style, text: "OBJ" }).on("click", save_obj),
-      jQuery('<label />', { css: { "margin-left": "20px" }, for: 'subdivideSLT', text: 'Subdivision Passes' }),
-      jQuery('<select />', { css: {"margin-left": "5px"}, id: 'subdivideSLT' })
-        .append(new Option("0", 0))
-        .append(new Option("1", 1))
-        .append(new Option("2", 2))
-    ]).insertAfter('.headerMenu-container:first');
+    var character_area = jQuery(".headerMenu-container").first();
+    character_area.css({ "display": "flex", "justify-content": "center", "align-content": "center", "align-items": "center" });
+
+    var style = { "margin-left": "10px", "width": "50px" };
+
+    character_area
+        .append(jQuery("<a />", { css: style, class: "jss7 jss9 jss10", text: "STL" }).on("click", save_stl))
+        .append(jQuery("<a />", { css: style, class: "jss7 jss9 jss10", text: "OBJ" }).on("click", save_obj))
+        .append(jQuery('<label />', { css: { "margin-left": "20px" }, for: 'subdivideSLT', text: 'Subdivision Passes' }))
+        .append(
+            jQuery('<select />', { css: { "margin-left": "5px" }, id: 'subdivideSLT' })
+                .append(new Option("0", 0))
+                .append(new Option("1", 1))
+                .append(new Option("2", 2))
+        );
 
     jQuery(".headerMenu-nav-scroll:first").append([
         jQuery('<a class="headerMenu-nav-item" href="#" target="_self"><div class="headerMenu-nav-item-img"><img src="/static/svg/character-menu/save.svg" width="20"></div><div class="headerMenu-nav-item-text">Save</div></a>').on("click", save_json),
