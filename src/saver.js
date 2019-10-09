@@ -9,8 +9,9 @@ import { finalizeMesh } from './finalizeMesh.js';
 
 function save_stl() {
     var smooth = jQuery('#subdivideSLT').val() > 0 ? jQuery('#subdivideSLT').val() : undefined;
+    var mirroredPose = CK.character.data.mirroredPose;
 
-    var group = process(CK.character, smooth);
+    var group = process(CK.character, smooth, mirroredPose);
 
     var exporter = new STLExporter();
     var fileString = exporter.parse(group);
@@ -23,8 +24,10 @@ function save_stl() {
 
 function save_obj() {
     var smooth = jQuery('#subdivideSLT').val() > 0 ? jQuery('#subdivideSLT').val() : undefined;
+    var mirroredPose = CK.character.data.mirroredPose;
 
-    var group = process(CK.character, smooth);
+
+    var group = process(CK.character, smooth, mirroredPose);
 
     var exporter = new OBJExporter();
     var fileString = exporter.parse(group);
@@ -67,7 +70,28 @@ function subdivide(geometry, subdivisions) {
     return smoothGeometry;
 };
 
-function process(object3d, smooth) {
+function mirror(geometry) {
+    const tempXYZ = [0, 0, 0];
+    if (geometry.index) geometry.copy(geometry.toNonIndexed());
+
+    for (let i = 0; i < geometry.attributes.position.array.length / 9; i++) {
+        tempXYZ[0] = geometry.attributes.position.array[i * 9];
+        tempXYZ[1] = geometry.attributes.position.array[i * 9 + 1];
+        tempXYZ[2] = geometry.attributes.position.array[i * 9 + 2];
+
+        geometry.attributes.position.array[i * 9] = geometry.attributes.position.array[i * 9 + 6];
+        geometry.attributes.position.array[i * 9 + 1] = geometry.attributes.position.array[i * 9 + 7];
+        geometry.attributes.position.array[i * 9 + 2] = geometry.attributes.position.array[i * 9 + 8];
+
+        geometry.attributes.position.array[i * 9 + 6] = tempXYZ[0];
+        geometry.attributes.position.array[i * 9 + 7] = tempXYZ[1];
+        geometry.attributes.position.array[i * 9 + 8] = tempXYZ[2];
+    }
+
+    return geometry;
+}
+
+function process(object3d, smooth, mirroredPose) {
     var material = new MeshBasicMaterial();
     var group = new Group();
 
@@ -76,6 +100,10 @@ function process(object3d, smooth) {
 
             var exporter = new finalizeMesh();
             var geometry = exporter.parse(object);
+
+            if (mirroredPose == true) {
+              geometry = mirror(geometry)
+            }
 
             if (smooth
                 && object.name != 'baseRim'
