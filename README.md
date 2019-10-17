@@ -14,8 +14,8 @@ Please **Always** think about the **developers** of such websites and try to **s
 var xhr=new XMLHttpRequest;xhr.open("get","https://raw.githubusercontent.com/TeaWithLucas/Herosaver/master/dist/saver.min.js",true);xhr.onreadystatechange=function(){if(xhr.readyState==4){var script=document.createElement("script");script.type="text/javascript";script.text=xhr.responseText;document.body.appendChild(script)}};xhr.send(null);
 ```
 
-### ~~Loading via Greecemonkey or other script loader~~
-~~This method should automatically load the script on page load. Current it doesn't work if the page is reloaded (Open for suggestions?)~~
+### Loading via Greecemonkey or other script loader
+This method should automatically load the script on page load. Current it doesn't work if the page is reloaded (Open for suggestions?)
 
 1. Install Greasemonkey Browser Addon (or alternative)
 2. Click the icon and select 'New User Script' from the dropdown menu
