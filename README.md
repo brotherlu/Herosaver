@@ -22,10 +22,16 @@ This method should automatically load the script on page load.
 3. The install window should pop up, check "Open editor after install completes" if you want to add domains, then click install.
 4. If it doesn't pop up an install window, either Greasemonkey isn't installed or another problem has occured, you can try adding the script manually.
 
-## Buttons
+## User Guide
+
+### Buttons
 * STL - Exports the current model and downloads a STL of it.
 * OBJ - Exports the current model and downloads a OBJ of it.
-* Subdivision Passes - Number of loop subdivision passes for the model.
+
+### Options
+* Quality - Number of loop subdivision passes for the model.
+
+### Dropdown Menu Items
 * Save - Exports the current model settings in a JSON format.
 * Load - Imports a previously exported JSON file with model settings.
 
