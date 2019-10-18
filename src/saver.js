@@ -148,6 +148,7 @@ document.body.arrive(".footer", { onceOnly: true, existing: true }, function () 
     //jQuery(".editorFooter").empty();
     //jQuery("li.tab-Material").remove();
     jQuery(".footer").empty();
+	jQuery(".content-side > .headerMenu-container").remove();
 	jQuery("#subDSltLabel").remove();
 	jQuery("#subdivideSLT").remove();
 	jQuery("#topSaveStl").remove();
