@@ -157,8 +157,6 @@ document.body.arrive(".footer", { onceOnly: true, existing: true }, function () 
 		
 	var area_editor_footer = jQuery(".editorFooter");
 	
-	<a href="#" class="shop-button clickable" id="add">Add to Cart</a>
-	
 	area_editor_footer
 		.append(jQuery("<a />", { css: style_shop_button, class: class_shop_button, text: "Download STL" }).on("click", save_stl))
         .append(jQuery("<a />", { css: style_shop_button, class: class_shop_button, text: "Download OBJ" }).on("click", save_obj));
