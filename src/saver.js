@@ -127,8 +127,8 @@ document.body.arrive(".footer", { onceOnly: true, existing: true }, function () 
 	var class_char_menu = 'headerMenu-container';
 	var class_shop_button = 'shop-button clickable';
 	var style_editor_footer = { "margin-left": "10px", "width": "50px" };
-	var html_import = '<label for="import"><span class="' + header_class + '" href="#" target="_self"><input type="file" id="import" name="import" style="display: none;"/><div class="' + header_class + '-img"><span style="width:20px">'+import_icon+'</span></div><div class="' + header_class + '-text">Import</div></span></label>';
-	var html_export = '<a class="' + header_class + '" href="#" target="_self"><div class="' + header_class + '-img"><span style="width:20px">'+icon_export+'</span></div><div class="' + header_class + '-text">Export</div></a>';
+	var html_import = '<label for="import"><span class="' + class_header + '" href="#" target="_self"><input type="file" id="import" name="import" style="display: none;"/><div class="' + class_header + '-img"><span style="width:20px">'+import_icon+'</span></div><div class="' + class_header + '-text">Import</div></span></label>';
+	var html_export = '<a class="' + class_header + '" href="#" target="_self"><div class="' + class_header + '-img"><span style="width:20px">'+icon_export+'</span></div><div class="' + class_header + '-text">Export</div></a>';
 	var style_char_menu = { "margin-left": "10px", "width": "50px" };
 	var style_shop_button = {};
 	
