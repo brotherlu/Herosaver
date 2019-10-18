@@ -43,6 +43,22 @@ For some guides look at:
 * [Reddit - Cheatsheet on Printing and Painting Miniatures](https://www.reddit.com/r/PrintedMinis/comments/8c0uvr/cheatsheet_on_printing_and_painting_miniatures/ "Cheatsheet on Printing and Painting Miniatures")
 * [Reddit - A detailed guide to printing your minis](https://www.reddit.com/r/PrintedMinis/comments/8c0uvr/cheatsheet_on_printing_and_painting_miniatures/ "A detailed guide to printing your minis")
 
+## Contributing
+
+### Installing minifyer
+1. [Install NPM](https://www.npmjs.com/get-npm)
+2. Clone the repository
+3. Navigate to the repository in your console
+4. Install rollup using:
+```
+npm install rollup
+```
+### Minifying
+1. Navigate to the repository in your console
+2. Build the minified version using:
+```
+npm run build
+```
 
 ## Bugs
 
