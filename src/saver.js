@@ -119,24 +119,34 @@ function process(object3d, smooth, mirroredPose) {
     return group;
 };
 
-document.body.arrive(".footer", { onceOnly: true, existing: true }, function () {
-    jQuery('.headerMenu:last').remove();
-    jQuery('a:contains(Log In)').remove();
-    jQuery(".headerMenu-nav-item:contains(Save)").hide();
-    jQuery(".headerMenu-nav-item:contains(Share)").remove();
-    jQuery(".headerMenu-nav-item:contains(Heroes)").remove();
-    jQuery(".editorFooter").empty();
-    jQuery("li.tab-Material").remove();
-    jQuery(".footer").empty();
+document.body.arrive(".footer", { onceOnly: true, existing: true }, function () { 	 
+	var icon_import_ = '\u0001F845';
+	var icon_export = '\u0001F847';
+	var icon_save = '\u0001F4BE';
+	var class_header = 'headerMenu-nav-item';
+	var class_char_menu = 'headerMenu-container';
+	var class_shop_button = 'shop-button clickable';
+	var style_editor_footer = { "margin-left": "10px", "width": "50px" };
+	var html_import = '<label for="import"><span class="' + header_class + '" href="#" target="_self"><input type="file" id="import" name="import" style="display: none;"/><div class="' + header_class + '-img"><span style="width:20px">'+import_icon+'</span></div><div class="' + header_class + '-text">Import</div></span></label>';
+	var html_export = '<a class="' + header_class + '" href="#" target="_self"><div class="' + header_class + '-img"><span style="width:20px">'+icon_export+'</span></div><div class="' + header_class + '-text">Export</div></a>';
+	var style_char_menu = { "margin-left": "10px", "width": "50px" };
+	var style_shop_button = {};
+	
+    //jQuery('.headerMenu:last').remove();
+    //jQuery('a:contains(Log In)').remove();
+    //jQuery(".headerMenu-nav-item:contains(Save)").hide();
+    //jQuery(".headerMenu-nav-item:contains(Share)").remove();
+    //jQuery(".headerMenu-nav-item:contains(Heroes)").remove();
+    //jQuery(".footer").empty();
 
-    var character_area = jQuery(".headerMenu-container").first();
-    character_area.css({ "display": "flex", "justify-content": "center", "align-content": "center", "align-items": "center" });
+    var area_char_menu = jQuery('.' + class_char_menu).first();
+    area_char_menu.css({ "display": "flex", "justify-content": "center", "align-content": "center", "align-items": "center" });
 
-    var style = { "margin-left": "10px", "width": "50px" };
+    
 
-    character_area
-        .append(jQuery("<a />", { css: style, class: "jss7 jss9 jss10", text: "STL" }).on("click", save_stl))
-        .append(jQuery("<a />", { css: style, class: "jss7 jss9 jss10", text: "OBJ" }).on("click", save_obj))
+    area_char_menu
+        .append(jQuery("<a />", { css: style_char_menu, class: "jss7 jss9 jss10", text: "STL" }).on("click", save_stl))
+        .append(jQuery("<a />", { css: style_char_menu, class: "jss7 jss9 jss10", text: "OBJ" }).on("click", save_obj))
         .append(jQuery('<label />', { css: { "margin-left": "20px" }, for: 'subdivideSLT', text: 'Subdivision Passes' }))
         .append(
             jQuery('<select />', { css: { "margin-left": "5px" }, id: 'subdivideSLT' })
@@ -144,9 +154,17 @@ document.body.arrive(".footer", { onceOnly: true, existing: true }, function () 
                 .append(new Option("1", 1))
                 .append(new Option("2", 2))
         );
+		
+	var area_editor_footer = jQuery(".editorFooter");
+	
+	<a href="#" class="shop-button clickable" id="add">Add to Cart</a>
+	
+	area_editor_footer
+		.append(jQuery("<a />", { css: style_shop_button, class: class_shop_button, text: "Download STL" }).on("click", save_stl))
+        .append(jQuery("<a />", { css: style_shop_button, class: class_shop_button, text: "Download OBJ" }).on("click", save_obj));
 
     jQuery(".headerMenu-nav-scroll:first").append([
-        jQuery('<a class="headerMenu-nav-item" href="#" target="_self"><div class="headerMenu-nav-item-img"><img src="/static/svg/character-menu/save.svg" width="20"></div><div class="headerMenu-nav-item-text">Save</div></a>').on("click", save_json),
-        jQuery('<label for="load"><span class="headerMenu-nav-item" href="#" target="_self"><input type="file" id="load" name="load" style="display: none;"/><div class="headerMenu-nav-item-img"><img src="/static/svg/character-menu/folder.svg" width="20"></div><div class="headerMenu-nav-item-text">Load</div></span></label>').on("change", load_json)
+        jQuery(html_import).on("click", save_json),
+        jQuery().on("change", load_json)
     ]);
 });
